@@ -1,6 +1,10 @@
-# Snaplet Instant Database Preview Environment Github Action
+# Snaplet Instant Database Github Action
+
+Deploy an instant database per pull request. Integrate with hosting services smoothly.
 
 ## Usage
+
+Create a GitHub Action Workflow file in your repository following one of these examples.
 
 ### With Vercel
 
@@ -8,6 +12,12 @@
 # .github/workflows/preview.yml
 
 name: Preview Environment
+
+env:
+  SNAPLET_ACCESS_TOKEN: ${{ secrets.SNAPLET_ACCESS_TOKEN }}
+  SNAPLET_PROJECT_ID: <YOUR_SNAPLET_PROJECT_ID>
+  VERCEL_ACCESS_TOKEN: ${{ secrets.VERCEL_ACCESS_TOKEN }}
+  VERCEL_PROJECT_ID: <YOUR_VERCEL_PROJECT_ID>
 
 on:
   pull_request:
@@ -23,13 +33,7 @@ jobs:
       - uses: actions/checkout@v3
       - id: snaplet
         uses: snaplet/action@main
-        with:
-          access-token: ${{ secrets.SNAPLET_ACCESS_TOKEN }}
-          project-id: <YOUR_SNAPLET_PROJECT_ID>
       - uses: snaplet/vercel-action@main
-        with:
-          access-token: ${{ secrets.VERCEL_ACCESS_TOKEN }}
-          project-id: <YOUR_VERCEL_PROJECT_ID>
         env:
           VERCEL_PREVIEW_DATABASE_URL: ${{ steps.snaplet.outputs.database-url }}
   delete:
@@ -38,26 +42,22 @@ jobs:
     steps:
       - uses: snaplet/action@main
         with:
-          access-token: ${{ secrets.SNAPLET_ACCESS_TOKEN }}
           delete: true
-          project-id: <YOUR_SNAPLET_PROJECT_ID>
       - uses: snaplet/vercel-action@main
         with:
-          access-token: ${{ secrets.VERCEL_ACCESS_TOKEN }}
           delete: true
-          project-id: <YOUR_VERCEL_PROJECT_ID>
 ```
 
 ## Documentation
 
+### Environment variables
+
+- SNAPLET_ACCESS_TOKEN
+- SNAPLET_PROJECT_ID
+
 ### Inputs
 
 ```yaml
-access-token:
-  description: Snaplet Cloud access token
-  required: true
-  type: string
-
 database-create-command:
   description: Command used to generate the instant database
   required: false
@@ -81,11 +81,6 @@ delete:
   required: false
   type: boolean
   default: false
-
-project-id:
-  description: Snaplet Cloud project id
-  required: true
-  type: string
 
 reset:
   description: Reset the database state on each commit
