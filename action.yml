@@ -1,0 +1,66 @@
+name: Snaplet Instant Database Preview Environment
+
+inputs:
+  access-token:
+    description: Snaplet Cloud access token
+    required: true
+    type: string
+  database-create-command:
+    description: Command used to generate the instant database
+    required: false
+    type: string
+    default: snaplet database create --git --latest
+  database-delete-command:
+    description: Command used to delete the instant database
+    required: false
+    type: string
+    default: snaplet database delete --git
+  database-url-command:
+    description: Command used to get the instant database url
+    required: false
+    type: string
+    default: snaplet database url --git
+  delete:
+    description: Delete the database
+    required: false
+    type: boolean
+    default: false
+  project-id:
+    description: Snaplet Cloud project id
+    required: true
+    type: string
+  reset:
+    description: Reset the database state on each commit
+    required: false
+    type: boolean
+    default: false
+
+outputs:
+  database-url:
+    description: Instant database url
+    value: ${{ steps.deploy.outputs.database-url }}
+
+runs:
+  using: composite
+  env:
+    SNAPLET_ACCESS_TOKEN: ${{ inputs.access-token }}
+    SNAPLET_PROJECT_ID: ${{ inputs.project-id }}
+  steps:
+    - name: Setup
+      shell: bash
+      run: curl -sS "https://app.snaplet.dev/get-cli/" | bash &> "/dev/null"
+
+    - if: ${{ inputs.delete == 'false' }}
+      id: deploy
+      name: Deploy
+      shell: bash
+      run: |
+        ${{ inputs.database-url-command }} &> "/dev/null" || ${{ inputs.database-create-command }}
+        [ "${{ inputs.reset-database-state }}" == "true" ] && ${{ inputs.database-create-command }}
+        echo "::set-output name=database-url::$(${{ inputs.database-url-command }})"
+
+    - if: ${{ inputs.delete == 'true' }}
+      name: Delete
+      shell: bash
+      run: ${{ inputs.database-delete-command }}
+
