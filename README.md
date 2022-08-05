@@ -29,13 +29,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: snaplet
-        uses: snaplet/action@main
+        uses: snaplet/action@v1
       - run: echo ${{ steps.snaplet.outputs.database-url }}
   delete:
     if: ${{ github.event.action == 'closed' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: snaplet/action@main
+      - uses: snaplet/action@v1
         with:
           delete: true
 ```
@@ -67,8 +67,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: snaplet
-        uses: snaplet/action@main
-      - uses: snaplet/vercel-action@main
+        uses: snaplet/action@v1
+      - uses: snaplet/vercel-action@v1
         with:
           env: |
             DATABASE_URL=${{ steps.snaplet.outputs.database-url }}
@@ -76,10 +76,10 @@ jobs:
     if: ${{ github.event.action == 'closed' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: snaplet/action@main
+      - uses: snaplet/action@v1
         with:
           delete: true
-      - uses: snaplet/vercel-action@main
+      - uses: snaplet/vercel-action@v1
         with:
           delete: true
 ```
