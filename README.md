@@ -1,6 +1,6 @@
 # Snaplet Instant Database Github Action
 
-Deploy an instant database per pull request. Integrate with hosting services smoothly.
+> Deploy an instant database per pull request. Integrate with hosting services smoothly.
 
 ## Usage
 
