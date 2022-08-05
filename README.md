@@ -34,8 +34,9 @@ jobs:
       - id: snaplet
         uses: snaplet/action@main
       - uses: snaplet/vercel-action@main
-        env:
-          VERCEL_PREVIEW_DATABASE_URL: ${{ steps.snaplet.outputs.database-url }}
+        with:
+          env: |
+            DATABASE_URL=${{ steps.snaplet.outputs.database-url }}
   delete:
     if: ${{ github.event.action == 'closed' }}
     runs-on: ubuntu-latest
