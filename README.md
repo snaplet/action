@@ -8,6 +8,8 @@ Create a GitHub Action Workflow file in your repository following one of these e
 
 ### With Vercel
 
+Using [snaplet/vercel-action](https://github.com/snaplet/vercel-action)
+
 ```yaml
 # .github/workflows/preview.yml
 
