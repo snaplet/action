@@ -1,6 +1,6 @@
 name: Snaplet Instant Database
 
-description: Deploy a Snaplet Instant Database for your preview environments
+description: Deploy Snaplet instant databases. Integrate with external services smoothly.
 
 inputs:
   database-create-command:
