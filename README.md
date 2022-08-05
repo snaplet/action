@@ -6,6 +6,40 @@
 
 Create a GitHub Action Workflow file in your repository following one of these examples.
 
+### Standalone
+
+```yaml
+# .github/workflows/preview.yml
+
+name: Preview Environment
+
+env:
+  SNAPLET_ACCESS_TOKEN: ${{ secrets.SNAPLET_ACCESS_TOKEN }}
+  SNAPLET_PROJECT_ID: <YOUR_SNAPLET_PROJECT_ID>
+
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+    branches:
+      - main
+
+jobs:
+  deploy:
+    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: snaplet
+        uses: snaplet/action@main
+      - run: echo ${{ steps.snaplet.outputs.database-url }}
+  delete:
+    if: ${{ github.event.action == 'closed' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: snaplet/action@main
+        with:
+          delete: true
+```
+
 ### With Vercel
 
 Using [snaplet/vercel-action](https://github.com/snaplet/vercel-action)
