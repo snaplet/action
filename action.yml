@@ -1,4 +1,6 @@
-name: Snaplet Instant Database Preview Environment
+name: Snaplet Instant Database
+
+description: Deploy a Snaplet Instant Database for your preview environments
 
 inputs:
   database-create-command:
