@@ -42,7 +42,7 @@ jobs:
 
 ### With Vercel
 
-Using [snaplet/vercel-action](https://github.com/snaplet/vercel-action)
+Using [snaplet/vercel-action](https://github.com/marketplace/actions/vercel-preview)
 
 ```yaml
 # .github/workflows/preview.yml
