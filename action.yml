@@ -45,7 +45,7 @@ runs:
       shell: bash
       run: |
         ${{ inputs.database-url-command }} &> "/dev/null" || ${{ inputs.database-create-command }}
-        [ "${{ inputs.reset-database-state }}" == "true" ] && ${{ inputs.database-create-command }}
+        [ "${{ inputs.reset }}" == "true" ] && ${{ inputs.database-create-command }}
         echo "::set-output name=database-url::$(${{ inputs.database-url-command }})"
 
     - if: ${{ inputs.delete == 'true' }}
