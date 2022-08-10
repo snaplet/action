@@ -1,5 +1,7 @@
 name: Snaplet Instant Database
 
+author: Snaplet
+
 description: Deploy Snaplet instant databases. Integrate with external services smoothly.
 
 inputs:
