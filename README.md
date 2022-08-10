@@ -1,5 +1,9 @@
 # Snaplet Instant Database Github Action
 
+<p align="center">
+  <img width="360" src="logo.png" alt="Snappy's paw makes a database appear by snapping their fingers with the title 'SNAP!'">
+</p>
+
 > Deploy Snaplet instant databases. Integrate with external services smoothly.
 
 ## Usage
