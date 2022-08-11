@@ -4,7 +4,12 @@
   <img width="360" src="logo.png" alt="Snappy's paw makes a database appear by snapping their fingers with the title 'SNAP!'">
 </p>
 
-> Deploy Snaplet instant databases. Integrate with external services smoothly.
+Using this action will create a fresh database for each pull-request.
+The database will be populated with data from your latest Snaplet snapshot.
+This allows you to have a database per pull-request, to enable PR previews, as part of your deployment pipeline.
+The database is destroyed once the pull request is closed or merged.
+
+Learn more about creating snapshots in our [docs](https://docs.snaplet.dev/).
 
 ## Usage
 
