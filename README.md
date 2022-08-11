@@ -1,13 +1,14 @@
-# Snaplet Instant Database Github Action
+# Snaplet Preview Database Github Action
 
 <p align="center">
   <img width="360" src="logo.png" alt="Snappy's paw makes a database appear by snapping their fingers with the title 'SNAP!'">
 </p>
 
-Using this action will create a fresh database for each pull-request.
-The database will be populated with data from your latest Snaplet snapshot.
-This allows you to have a database per pull-request, to enable PR previews, as part of your deployment pipeline.
-The database is destroyed once the pull request is closed or merged.
+> Deploy Snaplet preview databases filled with production-accurate data in no time.
+
+With this action, you can finally enjoy fully isolated and stateful preview environments. Get a new preview database filled with production-accurate data anytime you need it and plug it into your Jamstack hosting platform of choice like [Vercel](#with-vercel).
+
+By default, the preview database will be populated with data from your latest Snaplet snapshot.
 
 Learn more about creating snapshots in our [docs](https://docs.snaplet.dev/).
 
