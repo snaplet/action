@@ -1,8 +1,8 @@
-name: Snaplet Instant Database
+name: Snaplet Preview Databases
 
 author: Snaplet
 
-description: Deploy Snaplet instant databases. Integrate with external services smoothly.
+description: Deploy Snaplet preview databases filled with production-accurate data in no time.
 
 inputs:
   database-create-command:
