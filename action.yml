@@ -48,8 +48,10 @@ runs:
       name: Deploy
       shell: bash
       run: |
-        ${{ inputs.database-url-command }} &> "/dev/null" || ${{ inputs.database-create-command }}
-        [ "${{ inputs.reset }}" == "true" ] && ${{ inputs.database-create-command }}
+        if [ "${{ inputs.reset }}" == "true" ]; \
+        then ${{ inputs.database-create-command }} --force; \
+        else ${{ inputs.database-url-command }} &> "/dev/null" || ${{ inputs.database-create-command }}; \
+        fi
         echo "::set-output name=database-url::$(${{ inputs.database-url-command }})"
 
     - if: ${{ inputs.delete == 'true' }}
