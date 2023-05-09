@@ -108,26 +108,22 @@ database-create-command:
   description: Command used to generate the instant database
   required: false
   type: string
-  default: snaplet database create --git --latest
-
+  default: snaplet preview-database create --git --latest
 database-delete-command:
   description: Command used to delete the instant database
   required: false
   type: string
-  default: snaplet database delete --git
-
+  default: snaplet preview-database drop --git
 database-url-command:
   description: Command used to get the instant database url
   required: false
   type: string
-  default: snaplet database url --git
-
+  default: snaplet preview-database url --git
 delete:
   description: Delete the database
   required: false
   type: boolean
   default: false
-
 reset:
   description: Reset the database state on each commit
   required: false

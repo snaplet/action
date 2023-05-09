@@ -9,17 +9,17 @@ inputs:
     description: Command used to generate the instant database
     required: false
     type: string
-    default: snaplet database create --git --latest
+    default: snaplet preview-database create --git --latest
   database-delete-command:
     description: Command used to delete the instant database
     required: false
     type: string
-    default: snaplet database delete --git
+    default: snaplet preview-database drop --git
   database-url-command:
     description: Command used to get the instant database url
     required: false
     type: string
-    default: snaplet database url --git
+    default: snaplet preview-database url --git
   delete:
     description: Delete the database
     required: false
@@ -49,10 +49,10 @@ runs:
       shell: bash
       run: |
         if [ "${{ inputs.reset }}" == "true" ]; \
-        then ${{ inputs.database-create-command }} --force; \
+        then ${{ inputs.database-delete-command }} && ${{ inputs.database-create-command }}; \
         else ${{ inputs.database-url-command }} &> "/dev/null" || ${{ inputs.database-create-command }}; \
         fi
-        echo "::set-output name=database-url::$(${{ inputs.database-url-command }})"
+        echo "database-url=$(${{ inputs.database-url-command }})" >> $GITHUB_OUTPUT
 
     - if: ${{ inputs.delete == 'true' }}
       name: Delete
