@@ -52,7 +52,7 @@ runs:
         then ${{ inputs.database-delete-command }} && ${{ inputs.database-create-command }}; \
         else ${{ inputs.database-url-command }} &> "/dev/null" || ${{ inputs.database-create-command }}; \
         fi
-        echo "::set-output name=database-url::$(${{ inputs.database-url-command }})"
+        echo "database-url=$(${{ inputs.database-url-command }})" >> $GITHUB_OUTPUT
 
     - if: ${{ inputs.delete == 'true' }}
       name: Delete
